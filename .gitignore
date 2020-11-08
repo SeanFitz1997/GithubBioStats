@@ -16,6 +16,7 @@ target/
 
 # Sam files
 .aws-sam/
+samconfig.toml
 
 # IDE files
 .idea/
