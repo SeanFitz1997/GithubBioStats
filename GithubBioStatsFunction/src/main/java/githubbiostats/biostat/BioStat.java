@@ -1,13 +1,18 @@
 package githubbiostats.biostat;
 
 /**
- * Used for retrieving and calculating a Github statistic and formatting its output to be place in the Github bio.
+ * Retrieves and calculates a Github statistic and returns it as a string in a format defined by the implementation.
  * @param <T> The type of the statistic to be retrieved
  */
-public interface BioStat<T> {
+public abstract class BioStat<T> {
 
-    public T getBioStat(String username);
+    public String getBioStat() {
+        T stat = getStat();
+        return formatStat(stat);
+    }
 
-    public String formatStat(T stat);
+    public abstract T getStat();
+
+    public abstract String formatStat(T stat);
 
 }

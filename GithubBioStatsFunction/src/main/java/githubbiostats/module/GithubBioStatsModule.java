@@ -17,10 +17,11 @@ public class GithubBioStatsModule extends AbstractModule {
 
     @Provides
     public GithubBioStats selectedStats() {
+        String username = "SeanFitz1997"; // TODO: make env var
         EventService eventService = new EventService();
 
         List<BioStat> stats = ImmutableList.of(
-                new LatestRepoBioStat(eventService)
+                new LatestRepoBioStat(eventService, username)
         );
 
         return new GithubBioStats(stats);

@@ -8,20 +8,30 @@ import org.eclipse.egit.github.core.service.EventService;
 import java.util.Collection;
 import java.util.Optional;
 
+import static org.apache.commons.lang.Validate.notEmpty;
+import static org.apache.commons.lang.Validate.notNull;
+
 /**
  * Gets the Repo of the users last commit on Github
  */
 @Slf4j
-public class LatestRepoBioStat implements BioStat<String> {
+public class LatestRepoBioStat extends BioStat<String> {
 
     final EventService eventService;
+    final String username;
 
-    public LatestRepoBioStat(EventService eventService) {
+    public LatestRepoBioStat(
+        final EventService eventService,
+        final String username
+    ) {
+        notNull(eventService, "'eventService' must not be null");
+        notEmpty(username, "'username' must not be empty or null");
         this.eventService = eventService;
+        this.username = username;
     }
 
     @Override
-    public String getBioStat(String username) {
+    public String getStat() {
         PageIterator<Event> pageIterator = eventService.pageUserEvents(username);
         while (pageIterator.hasNext()) {
             Collection<Event> page = pageIterator.next();
@@ -31,18 +41,16 @@ public class LatestRepoBioStat implements BioStat<String> {
                     .map(name -> name.substring(name.lastIndexOf('/') + 1))
                     .findFirst();
 
-            if(latestRepo.isPresent()) {
+            if(latestRepo.isPresent())
                 return latestRepo.get();
-            }
         }
         return null;
     }
 
     @Override
     public String formatStat(String stat) {
-        if(stat == null || stat.isBlank()) {
-            return "";
-        }
+        if(stat == null || stat.isBlank())
+            return null;
         return "My latest project is " + stat;
     }
 
