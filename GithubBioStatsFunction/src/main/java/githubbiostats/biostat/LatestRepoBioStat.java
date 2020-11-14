@@ -16,7 +16,7 @@ public class LatestRepoBioStat implements BioStat<String> {
 
     final EventService eventService;
 
-    LatestRepoBioStat(EventService eventService) {
+    public LatestRepoBioStat(EventService eventService) {
         this.eventService = eventService;
     }
 

@@ -12,7 +12,7 @@ public class GithubBioStats {
 
     private final List bioStats;
 
-    GithubBioStats(List<BioStat> bioStats) {
+    public GithubBioStats(List<BioStat> bioStats) {
         // TODO: Validation
         this.bioStats = bioStats;
     }

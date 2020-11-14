@@ -17,7 +17,7 @@ public class GithubBioPublisher {
 
     final UserService userService;
 
-    GithubBioPublisher(UserService authenticatedUserService) {
+    public GithubBioPublisher(UserService authenticatedUserService) {
         userService = authenticatedUserService;
     }
 
