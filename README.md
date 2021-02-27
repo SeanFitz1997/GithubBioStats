@@ -1,6 +1,8 @@
 # GithubBioStats
 _Serverless application that updates your bio with stats about your Github projects_
 
+__Work In Progress__
+
 This project contains source code for an AWS Lambda serverless application that you can deploy with the SAM CLI.
 
 ## Deploy the sample application
